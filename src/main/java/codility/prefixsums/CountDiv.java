@@ -1,8 +1,5 @@
 package codility.prefixsums;
 
-/**
- * Created by Peter on 2015-06-27.
- */
 public class CountDiv {
 
     public int solution(final int A, final int B, final int K) {
