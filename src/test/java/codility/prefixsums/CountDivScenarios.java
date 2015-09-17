@@ -97,6 +97,51 @@ public class CountDivScenarios {
     }
 
     @Test
+    public void shouldPassForSameNotZeroRangeSecondExample() {
+        // Given
+        final int A = 10;
+        final int B = 10;
+        final int K = 5;
+        final CountDiv countDiv = new CountDiv();
+
+        // When
+        final int divisibleCount = countDiv.solution(A, B, K);
+
+        // Then
+        assertThat(divisibleCount).isEqualTo(1);
+    }
+
+    @Test
+    public void shouldPassForSameNotZeroRangeThirdExample() {
+        // Given
+        final int A = 10;
+        final int B = 10;
+        final int K = 20;
+        final CountDiv countDiv = new CountDiv();
+
+        // When
+        final int divisibleCount = countDiv.solution(A, B, K);
+
+        // Then
+        assertThat(divisibleCount).isEqualTo(0);
+    }
+
+    @Test
+    public void shouldPassForSameNotZeroRangeFourthExample() {
+        // Given
+        final int A = 10;
+        final int B = 10;
+        final int K = 7;
+        final CountDiv countDiv = new CountDiv();
+
+        // When
+        final int divisibleCount = countDiv.solution(A, B, K);
+
+        // Then
+        assertThat(divisibleCount).isEqualTo(1);
+    }
+
+    @Test
     public void shouldPassForSameRangeStartingWithZeroExample() {
         // Given
         final int A = 0;

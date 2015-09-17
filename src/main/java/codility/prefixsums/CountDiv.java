@@ -6,9 +6,19 @@ public class CountDiv {
         final int newA = A - (A % K);
         final int newB = B + (B % K);
 
-        if (K > B && A > 0) {
+        // if (K > B && B != 0) {
+        // return 0;
+        // } else if (A == 0 && K <= B) {
+        // return ((newB - newA) / K) + 1;
+        // } else if (A == 0 && B == 0 && K > B) {
+        // return ((newB - newA) / K) + 1;
+        // } else {
+        // return ((newB - newA) / K);
+        // }
+
+        if (K > B && B != 0) {
             return 0;
-        } else if ((K > B && A == 0) || newA == 0) {
+        } else if (A == 0 || A == B) {
             return ((newB - newA) / K) + 1;
         } else {
             return ((newB - newA) / K);
