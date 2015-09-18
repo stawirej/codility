@@ -6,12 +6,16 @@ public class CountDiv {
         final int newA = A - (A % K);
         final int newB = B + (B % K);
 
+        final int result = (newB - newA) / K;
+
         if (K > B && B != 0) {
             return 0;
-        } else if (A == 0 || (A == B && A % K == 0)) {
-            return ((newB - newA) / K) + 1;
+        } else if (A == newA && B == newB) {
+            return result + 1;
+        } else if (newA != A && newA % K == 0 && newB != B && newB % K == 0) {
+            return result - 1;
         } else {
-            return ((newB - newA) / K);
+            return result;
         }
     }
 }

@@ -51,6 +51,21 @@ public class CountDivScenarios {
         assertThat(divisibleCount).isEqualTo(7);
     }
 
+    @Test
+    public void shouldPassSimpleFourthExample() {
+        // Given
+        final int A = 11;
+        final int B = 13;
+        final int K = 2;
+        final CountDiv countDiv = new CountDiv();
+
+        // When
+        final int divisibleCount = countDiv.solution(A, B, K);
+
+        // Then
+        assertThat(divisibleCount).isEqualTo(1);
+    }
+
     @Test(timeout = 5000)
     public void shouldPassForLargeKExample() {
         // Given
@@ -64,6 +79,21 @@ public class CountDivScenarios {
 
         // Then
         assertThat(divisibleCount).isEqualTo(2);
+    }
+
+    @Test(timeout = 5000)
+    public void shouldPassForLargeNumbersExample() {
+        // Given
+        final int A = 101;
+        final int B = 123_456_789;
+        final int K = 10_000;
+        final CountDiv countDiv = new CountDiv();
+
+        // When
+        final int divisibleCount = countDiv.solution(A, B, K);
+
+        // Then
+        assertThat(divisibleCount).isEqualTo(12345);
     }
 
     @Test(timeout = 5000)
