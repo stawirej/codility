@@ -66,6 +66,21 @@ public class CountDivScenarios {
         assertThat(divisibleCount).isEqualTo(1);
     }
 
+    @Test
+    public void shouldPassSimpleFifthExample() {
+        // Given
+        final int A = 10;
+        final int B = 14;
+        final int K = 2;
+        final CountDiv countDiv = new CountDiv();
+
+        // When
+        final int divisibleCount = countDiv.solution(A, B, K);
+
+        // Then
+        assertThat(divisibleCount).isEqualTo(3);
+    }
+
     @Test(timeout = 5000)
     public void shouldPassForLargeKExample() {
         // Given
