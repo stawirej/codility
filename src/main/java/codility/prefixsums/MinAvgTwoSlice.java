@@ -10,29 +10,29 @@ public class MinAvgTwoSlice {
         int endIndex = 1;
         float previousAvarage = Integer.MAX_VALUE;
 
-        for (; startIndex < A.length; ) {
+        for (; startIndex < A.length - 1;) {
             final float currentAvarage = getAvarageForRange(A, startIndex, endIndex);
             if (previousAvarage < currentAvarage) {
                 startIndex++;
+                endIndex = startIndex + 1;
                 continue;
+            }
+            if (previousAvarage == currentAvarage) {
+                startIndex--;
+                if (startIndex < 0) {
+                    break;
+                }
             }
             previousAvarage = currentAvarage;
 
             if (smallestAverage > currentAvarage) {
                 smallestAverage = currentAvarage;
-                endIndex++;
+                endIndex = endIndex >= A.length - 1 ? A.length - 1 : endIndex + 1;
                 sliceStartIndex = startIndex;
             }
 
         }
 
-        // for (int i = 1; i < A.length; i++) {
-        // final int pairAvarage = (A[i - 1] + A[i]) / 2;
-        // if (smallestAverage > pairAvarage) {
-        // smallestAverage = pairAvarage;
-        // sliceStartIndex = i - 1;
-        // }
-        // }
         return sliceStartIndex;
     }
 
