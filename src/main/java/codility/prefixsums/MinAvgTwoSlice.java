@@ -21,9 +21,14 @@ public class MinAvgTwoSlice {
                 startIndex--;
                 if (startIndex < 0) {
                     break;
+                } else {
+                    // startIndex++;
+                    // endIndex = endIndex >= A.length - 1 ? A.length - 1 : endIndex + 1;
                 }
+                previousAvarage = Integer.MAX_VALUE;
+            } else {
+                previousAvarage = currentAvarage;
             }
-            previousAvarage = currentAvarage;
 
             if (smallestAverage > currentAvarage) {
                 smallestAverage = currentAvarage;
@@ -34,6 +39,7 @@ public class MinAvgTwoSlice {
         }
 
         return sliceStartIndex;
+
     }
 
     private float getAvarageForRange(final int[] A, final int startIndex, final int endIndex) {
