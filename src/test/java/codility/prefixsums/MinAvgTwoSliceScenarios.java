@@ -22,6 +22,19 @@ public class MinAvgTwoSliceScenarios {
     }
 
     @Test
+    public void shouldPassSecondSimpleExample() {
+        // Given
+        final int[] A = {-3, -5, -8, -4, -10};
+        final MinAvgTwoSlice minAvgTwoSlice = new MinAvgTwoSlice();
+
+        // When
+        final int startPosition = minAvgTwoSlice.solution(A);
+
+        // Then
+        assertThat(startPosition).isEqualTo(2);
+    }
+
+    @Test
     public void shouldPassForTwoElements() {
         // Given
         final int[] A = {-10, 10};
