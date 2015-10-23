@@ -12,6 +12,7 @@ public class GenomicRangeQuery {
         dnaToInt.put('G', 3);
         dnaToInt.put('T', 4);
         final int[] prefixSums = new int[S.length() + 1];
+        final int[] noDubletsPrefixSums = new int[S.length() + 1];
         final int[] minimums = new int[P.length];
 
         for (int i = 1; i <= S.length(); i++) {
@@ -20,9 +21,42 @@ public class GenomicRangeQuery {
             prefixSums[i] = prefixSums[i - 1] + nucleotideValue;
         }
 
-        for (int i = 0; i < P.length; i++) {
-            minimums[i] = prefixSums[Q[i] + 1] - prefixSums[Q[i]];
-        }
+        // if (allIdentical) {
+        // for (int i = 0; i < minimums.length; i++) {
+        // minimums[i] = firstValue;
+        // }
+        // return minimums;
+        // }
+        //
+        // for (int i = 0; i < P.length; i++) {
+        // final int sum = prefixSums[Q[i] + 1] - prefixSums[P[i]];
+        // final int average = sum / (Q[i] - P[i] + 1);
+        // if (average < 2) {
+        // minimums[i] = 1;
+        // } else if (average < 3) {
+        // int div;
+        // minimums[i] = 2;
+        // for (int j = P[i]; j <= Q[i]; j++) {
+        // div = prefixSums[j + 1] - prefixSums[j];
+        // if (div == 1) {
+        // minimums[i] = 1;
+        // break;
+        // }
+        // }
+        // } else if (average < 4) {
+        // int div;
+        // int currentSmallest = 4;
+        // for (int j = P[i]; j <= Q[i]; j++) {
+        // div = prefixSums[j + 1] - prefixSums[j];
+        // if (currentSmallest > div) {
+        // currentSmallest = div;
+        // }
+        // }
+        // minimums[i] = currentSmallest;
+        // } else {
+        // minimums[i] = 4;
+        // }
+        // }
 
         return minimums;
     }

@@ -35,4 +35,19 @@ public class GenomicRangeQueryScenarios {
         // Then
         assertThat(solution).containsSequence(1, 1, 2).hasSize(3);
     }
+
+    @Test
+    public void shouldPassForIdenticalCharacterString() {
+        // Given
+        final String S = "CC";
+        final int[] P = {0, 0, 1};
+        final int[] Q = {0, 1, 1};
+        final GenomicRangeQuery genomicRangeQuery = new GenomicRangeQuery();
+
+        // When
+        final int[] solution = genomicRangeQuery.solution(S, P, Q);
+
+        // Then
+        assertThat(solution).containsSequence(2, 2, 2).hasSize(3);
+    }
 }
