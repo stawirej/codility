@@ -57,4 +57,17 @@ public class NumberOfDiscIntersectionsScenarios {
         // Then
         then(intersectionsCount).isEqualTo(2);
     }
+
+    @Test
+    public void shouldPassSimple2Example() {
+        // Given
+        final int[] A = {1, 0, 1, 0, 1};
+        final NumberOfDiscIntersections discIntersections = new NumberOfDiscIntersections();
+
+        // When
+        final int intersectionsCount = discIntersections.solution(A);
+
+        // Then
+        then(intersectionsCount).isEqualTo(6);
+    }
 }
