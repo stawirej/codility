@@ -13,11 +13,11 @@ class NumberOfDiscIntersections {
         int shift = 1;
         long intersectionsCount = 0;
         for (int i = 0; i < A.length; i++) {
-            final int x1 = i - A[i];
-            final int y1 = i + A[i];
+            final long x1 = (long) i - (long) A[i];
+            final long y1 = (long) i + (long) A[i];
             for (int j = shift; j < A.length; j++) {
-                final int x2 = j - A[j];
-                final int y2 = j + A[j];
+                final long x2 = (long) j - (long) A[j];
+                final long y2 = (long) j + (long) A[j];
                 if (intersects(x1, y1, x2, y2)) {
                     //matrix[i][j] =1;
                     intersectionsCount++;
@@ -32,7 +32,7 @@ class NumberOfDiscIntersections {
         return (int) intersectionsCount;
     }
 
-    private boolean intersects(final int x1, final int y1, final int x2, final int y2) {
+    private boolean intersects(final long x1, final long y1, final long x2, final long y2) {
 
         if ((x2 >= x1 && y2 <= y1) || //
                 (x1 >= x2 && y1 <= y2) || //
