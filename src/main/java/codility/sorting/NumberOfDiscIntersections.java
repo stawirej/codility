@@ -1,8 +1,5 @@
 package codility.sorting;
 
-import java.util.Hashtable;
-import java.util.Map;
-
 class NumberOfDiscIntersections {
 
     public int solution(final int[] A) {
@@ -11,36 +8,79 @@ class NumberOfDiscIntersections {
             return 0;
         }
 
-        final Map<Long, Long> intersections = new Hashtable();
-        final Map<Long, Long> pairs = new Hashtable();
+//        final long[][] matrix = new long[A.length][A.length];
 
-        for (int centerPoint = 0; centerPoint < A.length; centerPoint++) {
-            final long radius = A[centerPoint];
-            for (long j = centerPoint - radius; j <= centerPoint + radius; j++) {
-                if (intersections.containsKey(j)) {
-                    final Long count = intersections.get(j);
-                    intersections.put(j, count + 1);
-                } else {
-                    intersections.put(j, 1L);
+        int shift = 1;
+        long intersectionsCount = 0;
+        for (int i = 0; i < A.length; i++) {
+            final int x1 = i - A[i];
+            final int y1 = i + A[i];
+            for (int j = shift; j < A.length; j++) {
+                final int x2 = j - A[j];
+                final int y2 = j + A[j];
+                if (intersects(x1, y1, x2, y2)) {
+                    //matrix[i][j] =1;
+                    intersectionsCount++;
+                    if (intersectionsCount > 10_000_000) {
+                        return -1;
+                    }
                 }
             }
+            shift++;
         }
 
-        for (final Long key : intersections.keySet()) {
-            if (key > 0 && intersections.containsKey(-key)) {
-                pairs.put(key, intersections.get(key) - intersections.get(-key));
-            }
-        }
-
-        long counter = 0;
-        for (final Long value : pairs.values()) {
-            counter += value;
-            if (counter > 10_000_000) {
-                return -1;
-            }
-        }
-
-        return (int)counter;
-
+        return (int) intersectionsCount;
     }
+
+    private boolean intersects(final int x1, final int y1, final int x2, final int y2) {
+
+        if ((x2 >= x1 && y2 <= y1) || //
+                (x1 >= x2 && y1 <= y2) || //
+                (y1 == x2) || (x1 == y2) || //
+                (x1 <= x2 && y2 >= y1 && x2 <= y1) || //
+                (x2 <= x1 && y1 >= y2 && x1 <= y2)) {
+            return true;
+        }
+
+        return false;
+    }
+
+    // public int solution(final int[] A) {
+    //
+    // if (A.length == 0) {
+    // return 0;
+    // }
+    //
+    // final Map<Long, Long> intersections = new Hashtable();
+    // final Map<Long, Long> pairs = new Hashtable();
+    //
+    // for (int centerPoint = 0; centerPoint < A.length; centerPoint++) {
+    // final long radius = A[centerPoint];
+    // for (long j = centerPoint - radius; j <= centerPoint + radius; j++) {
+    // if (intersections.containsKey(j)) {
+    // final Long count = intersections.get(j);
+    // intersections.put(j, count + 1);
+    // } else {
+    // intersections.put(j, 1L);
+    // }
+    // }
+    // }
+    //
+    // for (final Long key : intersections.keySet()) {
+    // if (key > 0 && intersections.containsKey(-key)) {
+    // pairs.put(key, intersections.get(key) - intersections.get(-key));
+    // }
+    // }
+    //
+    // long counter = 0;
+    // for (final Long value : pairs.values()) {
+    // counter += value;
+    // if (counter > 10_000_000) {
+    // return -1;
+    // }
+    // }
+    //
+    // return (int)counter;
+    //
+    // }
 }

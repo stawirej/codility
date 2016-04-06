@@ -44,4 +44,17 @@ public class NumberOfDiscIntersectionsScenarios {
         // Then
         then(intersectionsCount).isEqualTo(3);
     }
+
+    @Test
+    public void shouldPassForOverflow() {
+        // Given
+        final int[] A = {1, 2147483647, 0};
+        final NumberOfDiscIntersections discIntersections = new NumberOfDiscIntersections();
+
+        // When
+        final int intersectionsCount = discIntersections.solution(A);
+
+        // Then
+        then(intersectionsCount).isEqualTo(2);
+    }
 }
