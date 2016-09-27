@@ -34,4 +34,25 @@ public class MissingInteger {
             return 1;
         }
     }
+
+// Stream approach
+//    public int solution(final int[] A) {
+//        final List<Integer> preparedA =
+//            IntStream
+//                .of(A)
+//                .filter(v -> v > 0)
+//                .distinct()
+//                .sorted()
+//                .boxed()
+//                .collect(toList());
+//
+//        final OptionalInt reduced =
+//            IntStream
+//                .iterate(1, i -> i + 1)
+//                .limit(preparedA.size())
+//                .filter(i -> preparedA.get(i - 1) == i)
+//                .reduce((i, j) -> j);
+//
+//        return reduced.isPresent() ? reduced.getAsInt() + 1 : 1;
+//    }
 }
