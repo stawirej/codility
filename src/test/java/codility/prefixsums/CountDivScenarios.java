@@ -2,7 +2,9 @@ package codility.prefixsums;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.Timeout;
+import java.util.concurrent.TimeUnit;
 
 public class CountDivScenarios {
 
@@ -81,7 +83,8 @@ public class CountDivScenarios {
         assertThat(divisibleCount).isEqualTo(3);
     }
 
-    @Test(timeout = 5000)
+    @Test
+    @Timeout(value = 5000, unit = TimeUnit.MILLISECONDS)
     public void shouldPassForLargeKExample() {
         // Given
         final int A = 0;
@@ -96,7 +99,8 @@ public class CountDivScenarios {
         assertThat(divisibleCount).isEqualTo(2);
     }
 
-    @Test(timeout = 5000)
+    @Test
+    @Timeout(value = 5000, unit = TimeUnit.MILLISECONDS)
     public void shouldPassForLargeNumbersExample() {
         // Given
         final int A = 101;
@@ -111,7 +115,8 @@ public class CountDivScenarios {
         assertThat(divisibleCount).isEqualTo(12345);
     }
 
-    @Test(timeout = 5000)
+    @Test
+    @Timeout(value = 5000, unit = TimeUnit.MILLISECONDS)
     public void shouldPassForSmallKExample() {
         // Given
         final int A = 0;

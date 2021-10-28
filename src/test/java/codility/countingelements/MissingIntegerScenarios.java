@@ -2,9 +2,11 @@ package codility.countingelements;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.Timeout;
+import java.util.concurrent.TimeUnit;
 import java.util.stream.IntStream;
 
-import org.junit.Test;
 
 /**
  * Created by Peter on 2015-05-30.
@@ -63,7 +65,8 @@ public class MissingIntegerScenarios {
         assertThat(missing).isEqualTo(1);
     }
 
-    @Test(timeout = 5000)
+    @Test
+    @Timeout(value = 5000, unit = TimeUnit.MILLISECONDS)
     public void shouldFindLastMaximumElement() {
         // Given
         final int[] A = IntStream.rangeClosed(-50000, 50000).toArray();
@@ -76,7 +79,8 @@ public class MissingIntegerScenarios {
         assertThat(missing).isEqualTo(50001);
     }
 
-    @Test(timeout = 5000)
+    @Test
+    @Timeout(value = 5000, unit = TimeUnit.MILLISECONDS)
     public void shouldFindLastMaximumElementForOnlyPositives() {
         // Given
         final int[] A = IntStream.rangeClosed(1, 100000).toArray();
@@ -89,7 +93,8 @@ public class MissingIntegerScenarios {
         assertThat(missing).isEqualTo(100001);
     }
 
-    @Test(timeout = 5000)
+    @Test
+    @Timeout(value = 5000, unit = TimeUnit.MILLISECONDS)
     public void shouldFindMissingInMaximumRange() {
         // Given
         final int[] A = IntStream.rangeClosed(1, 100000).toArray();

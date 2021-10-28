@@ -2,10 +2,12 @@ package codility.countingelements;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.Timeout;
 import java.util.Arrays;
+import java.util.concurrent.TimeUnit;
 import java.util.stream.IntStream;
 
-import org.junit.Test;
 
 /**
  * Created by Peter on 2015-05-17.
@@ -40,7 +42,8 @@ public class MaxCountersScenarios {
         assertThat(counters).containsSequence(3, 4, 3, 3, 4).hasSize(N);
     }
 
-    @Test(timeout = 10000)
+    @Test
+    @Timeout(value = 10000, unit = TimeUnit.MILLISECONDS)
     public void shouldProcessFastAllMaxCounterOperations() {
         // Given
         final int N = 100000;

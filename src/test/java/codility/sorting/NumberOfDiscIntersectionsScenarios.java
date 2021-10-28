@@ -2,8 +2,11 @@ package codility.sorting;
 
 import static org.assertj.core.api.BDDAssertions.then;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
 
+
+@Disabled
 public class NumberOfDiscIntersectionsScenarios {
 
     @Test

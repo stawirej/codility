@@ -2,9 +2,10 @@ package codility.prefixsums;
 
 import static org.assertj.core.api.BDDAssertions.then;
 
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.Timeout;
 import java.util.Arrays;
-
-import org.junit.Test;
+import java.util.concurrent.TimeUnit;
 
 public class GenomicRangeQueryScenarios {
 
@@ -83,7 +84,8 @@ public class GenomicRangeQueryScenarios {
         then(solution).containsSequence(3, 3, 3, 3, 3, 3).hasSize(6);
     }
 
-    @Test(timeout = 7_000)
+    @Test
+    @Timeout(value = 7_000, unit = TimeUnit.MILLISECONDS)
     public void shouldPassMAximumLengthSameCharacter() {
         // Given
         final StringBuffer buffer = new StringBuffer();
