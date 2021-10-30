@@ -4,51 +4,47 @@ final class NumberSolitaire {
 
     public static int solution(int[] A) {
 
-        long maxSum = A[0];
-        long maxDiceStep = 0;
+        int maxSum = A[0];
 
-        for (int i = 0; i < A.length - 1; ) {
-
-            // find max dice span
-            maxDiceStep = maxDiceStep(A.length, i);
-
-            // find max positive value in dice span
-            i++;
-            long offset = i - 1;
-            int localMax = A[i];
-            boolean onlyNegativeNumbers = true;
-            for (int j = i; j < offset + maxDiceStep; j++) {
-                if (A[j] > 0) {
-                    localMax = A[j];
-                    onlyNegativeNumbers = false;
-                    i = j;
-                    break;
-                }
+        for (int i = 1; i < A.length; i++) {
+            if (A[i] > 0) {
+                maxSum += A[i];
+                continue;
             }
 
-            if (onlyNegativeNumbers && maxDiceStep == 6) {
-                for (int j = i; j <= offset + maxDiceStep; j++) {
-                    if (A[j] >= localMax) {
-                        localMax = A[j];
-                        i = j;
+            if (A[i] < 0) {
+                long maxDiceStep = maxDiceStep(A.length, i - 1);
+                int max = A[i];
+
+                int maxIndex = i;
+                for (int j = i; j < i + maxDiceStep; j++) {
+                    if (A[j] > 0) {
+                        max = A[j];
+                        maxIndex = j;
+                        break;
+                    }
+                    if (A[j] >= max) {
+                        max = A[j];
+                        maxIndex = j;
                     }
                 }
-            } else if (onlyNegativeNumbers && maxDiceStep < 6){
-                localMax = A[A.length - 1]; //last element
-                i = A.length;
+
+                if (maxDiceStep < 6 && max < 0) {
+                    max = A[A.length - 1];
+                    maxIndex = A.length - 1;
+                }
+
+                maxSum += max;
+                i = maxIndex;
             }
-
-
-            // add max value
-            maxSum += localMax;
-            
         }
 
-        return (int)maxSum;
+        return maxSum;
     }
 
     private static long maxDiceStep(final long length, final long i) {
         long maxDiceStep = 0;
+
         if (i + 6 < length) {
             maxDiceStep = 6;
         } else if (i + 5 < length) {
