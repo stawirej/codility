@@ -87,56 +87,63 @@ final class Graph {
         List<Edge> noSelfLoopsEdges = new ArrayList<>();
 
         edges
-            .forEach(edge -> {
-                if (!edge.isSelfLoop()) {
-                    noSelfLoopsEdges.add(edge);
-                }
-            });
+            .forEach(edge -> removeSelfLoops(noSelfLoopsEdges, edge));
 
         return noSelfLoopsEdges;
+    }
+
+    private void removeSelfLoops(final List<Edge> noSelfLoopsEdges, final Edge edge) {
+
+        if (!edge.isSelfLoop()) {
+            noSelfLoopsEdges.add(edge);
+        }
     }
 
     private List<Edge> merge(Edge randomEdge) {
 
         List<Edge> mergedEdges = new ArrayList<>();
-        long vertex1 = randomEdge.fromVertex();
-        long vertex2 = randomEdge.toVertex();
         maxVertex++;
 
         edges
-            .forEach(edge -> {
-                         if (edge.fromVertex() == vertex1
-                             || edge.fromVertex() == vertex2
-                             || edge.toVertex() == vertex1
-                             || edge.toVertex() == vertex2) {
+            .forEach(edge -> merge(mergedEdges, randomEdge, edge));
 
-                             long fromVertex = edge.fromVertex();
-                             long toVertex = edge.toVertex();
-
-                             if (edge.fromVertex() == vertex1) {
-                                 fromVertex = maxVertex;
-                             }
-
-                             if (edge.fromVertex() == vertex2) {
-                                 fromVertex = maxVertex;
-                             }
-
-                             if (edge.toVertex() == vertex1) {
-                                 toVertex = maxVertex;
-                             }
-
-                             if (edge.toVertex() == vertex2) {
-                                 toVertex = maxVertex;
-                             }
-
-                             mergedEdges.add(new Edge(fromVertex, toVertex));
-
-                         } else {
-                             mergedEdges.add(edge);
-                         }
-                     }
-                    );
         return mergedEdges;
+    }
+
+    private void merge(final List<Edge> mergedEdges, Edge randomEdge, final Edge edge) {
+
+        long vertex1 = randomEdge.fromVertex();
+        long vertex2 = randomEdge.toVertex();
+
+        if (edge.fromVertex() == vertex1
+            || edge.fromVertex() == vertex2
+            || edge.toVertex() == vertex1
+            || edge.toVertex() == vertex2) {
+
+            long fromVertex = edge.fromVertex();
+            long toVertex = edge.toVertex();
+
+            if (edge.fromVertex() == vertex1) {
+                fromVertex = maxVertex;
+            }
+
+            if (edge.fromVertex() == vertex2) {
+                fromVertex = maxVertex;
+            }
+
+            if (edge.toVertex() == vertex1) {
+                toVertex = maxVertex;
+            }
+
+            if (edge.toVertex() == vertex2) {
+                toVertex = maxVertex;
+            }
+
+            mergedEdges.add(new Edge(fromVertex, toVertex));
+
+        } else {
+            mergedEdges.add(edge);
+        }
     }
 
     private Edge selectRandomEdge() {
